@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Saúde da Planta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="sess1">
+        <div class="ss2">
+            <h1>Monitoramento de Planta</h1>
+            <p>slogan/subtitulo</p>
+            <button>apresentação do projeto</button>
+        </div>
+    </header>
+    
+    <main>
+        <section class="classificacao">
+            <div class="classificacao-box">
+                <h2>Classifique a Planta</h2>
+                <p>Escolha uma imagem da planta para análise</p>
+                
+                <input type="file" id="plant-image" class="file-button">
+                <button onclick="enviarClassificacao()">Enviar</button>
+            </div>
+        </section>
+
+        <section class="monitoramento">
+            <!-- Dados Meteorológicos -->
+            <div class="data-section">
+                <h3>Dados </h3>
+                <div class="data-box">
+                    <p>Temperatura: <span id="temperature">28.23</span> °C</p>
+                    <p>Umidade: <span id="humidity">42.72</span> %</p>
+                    <p>Pressão Atmosférica: <span id="pressure">926.37</span> hPa</p>
+                    <p>Altitude: <span id="altitude">749.85</span> m</p>
+                </div>
+            </div>
+
+            <!-- Gráficos  -->
+            <div class="gauge-section">
+                <h3>Análise Gráfica</h3>
+                <canvas id="temperatureGauge"></canvas>
+                <canvas id="humidityGauge"></canvas>
+            </div>
+
+            <!-- Gráficos de Linha -->
+            <div class="line-chart-section">
+                <h3>Análise Gráfica 2</h3>
+                <canvas id="pressureLineChart"></canvas>
+                <canvas id="altitudeLineChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <div id="result-popup" class="popup hidden">
+        <div class="popup-content">
+            <span class="close-button" onclick="fecharPopup()">&times;</span>
+            <h2>Resultado da Classificação</h2>
+            <p id="classification-result">A planta parece....</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
