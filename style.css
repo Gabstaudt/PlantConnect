@@ -200,13 +200,14 @@ main {
     .monitoramento{
         display: flex;
         flex-wrap: wrap;
-        
+        gap: 10px;
         align-items: center;
         justify-content: center;
     }
     #plantLive{
         flex: 0;
         width: 90%;
+        height: 35dvh;
     }
     .data-section{
         max-height: 288px;
@@ -214,7 +215,5 @@ main {
     .ss2 h1{
         font-size: 2rem;
     }
-    canvas{
-        width: 320px;
-    }
+
 }
