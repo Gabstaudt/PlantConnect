@@ -33,10 +33,24 @@
             <div class="data-section">
                 <h3>Dados </h3>
                 <div class="data-box">
-                    <p>Temperatura: <span id="temperature">28.23</span> °C</p>
-                    <p>Umidade: <span id="humidity">42.72</span> %</p>
-                    <p>Pressão Atmosférica: <span id="pressure">926.37</span> hPa</p>
-                    <p>Altitude: <span id="altitude">749.85</span> m</p>
+                    <div id="data-temp">
+                        <p>Temperatura(°C)</p>
+                        <span id="temperature"class="value-data-box">28.23</span> 
+                    </div>
+                    <div id="data-umi">
+                        <p>Umidade(%)</p>
+                        <span id="humidity" class="value-data-box">42.72</span>
+                    </div>
+                    <div id="data-atmo" >
+                        <p>Pressão AT(hPa0)</p>
+                        <span id="pressure" class="value-data-box">926.37</span>
+                    </div>
+                    <div id="data-alti"  style="display: flex;align-items: center;flex-direction: column;justify-content: space-evenly;">
+                       <p>Altitude(m)</p>
+                       <span id="altitude" class="value-data-box">749.85</span>
+                    </div>
+                     
+                    
                 </div>
             </div>
 

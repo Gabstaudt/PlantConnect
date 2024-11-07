@@ -74,7 +74,16 @@ main {
     text-align: center;
     color: #4CAF50;
 }
-
+.data-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.value-data-box{
+    color:orangered;
+    border-bottom: 1px solid gray;
+    padding: 0px 5%;
+}
 .monitoramento {
     display: flex;
     justify-content: space-around;
@@ -88,7 +97,7 @@ main {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 380px;
+    max-width: 390px;
     margin: 10px;
 }
 
