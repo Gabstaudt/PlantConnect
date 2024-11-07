@@ -51,3 +51,22 @@ document.addEventListener("DOMContentLoaded", function () {
         options: { scales: { x: { display: true }, y: { display: true } } }
     });
 });
+
+//função que faz a requisição e coloca os dados no grafico
+async function getDataPlant(){
+    //url da api feita em python
+    urlApi = ''
+    //requisição por API fetch
+    const dataRequest = null;
+    //objeto que guardara os dados obtidos após feito a requisição
+    var plantData = {}
+}
+//função que faz a requisição obtem os frames
+async function getFramePlant(){
+       //url da api feita em python
+       urlApi = ''
+       //requisição por API fetch
+       const dataRequest = null;
+       //objeto que guardara os frames de imagnes obtidos após feito a requisição
+       var plantData = {} 
+}
