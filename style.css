@@ -60,12 +60,17 @@ main {
 }
 
 .classificassao, .monitoramento{
-    width: 100%;
-    max-width: 1200px;
     margin-top: 40px;
     text-align: center;
 }
-
+.monitoramento{
+    width: 90%;
+    display: grid;
+  
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 500px;
+    gap: 10px;
+}
 .classificacao-box, .data-box {
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -73,6 +78,9 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     color: #4CAF50;
+}
+.classificacao-box{
+    width: 90dvw;
 }
 .data-box{
     display: grid;
@@ -84,12 +92,7 @@ main {
     border-bottom: 1px solid gray;
     padding: 0px 5%;
 }
-.monitoramento {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
+
 
 .gauge-section, .line-chart-section, .data-section {
     background-color: #FFFFFF;
@@ -100,8 +103,30 @@ main {
     max-width: 390px;
     margin: 10px;
 }
-
+.data-section{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    max-height: 250px;
+}
+.gauge-section{
+    grid-column: 2/3;
+    grid-row: 1/2;    
+}
+.line-chart-section{
+    grid-column: 3/4;
+    grid-row: 1/2;  
+}
+#plantLive{
+    grid-column: 1/4;
+    grid-row: 2/3;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
 canvas {
+    height: 400px;
+    width: 600px;
     margin-top: 20px;
 }
 
