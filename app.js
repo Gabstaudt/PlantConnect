@@ -52,21 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//função que faz a requisição e coloca os dados no grafico
-async function getDataPlant(){
-    //url da api feita em python
-    urlApi = ''
-    //requisição por API fetch
-    const dataRequest = null;
-    //objeto que guardara os dados obtidos após feito a requisição
-    var plantData = {}
-}
-//função que faz a requisição obtem os frames
-async function getFramePlant(){
-       //url da api feita em python
-       urlApi = ''
-       //requisição por API fetch
-       const dataRequest = null;
-       //objeto que guardara os frames de imagnes obtidos após feito a requisição
-       var plantData = {} 
-}
+//adição de imagem ao canvas
+var canvas = document.getElementById('plantLive')
+var ctx = canvas.getContext('2d');
+var img = new Image()
+img.src = '/representacao.jpg'
+img.onload = () => {
+    // Define a posição e o tamanho para desenhar a imagem
+    const x = 0;
+    const y = 0;
+    const width = canvas.width;
+    const height = canvas.height;
+  
+    // Desenha a imagem no contexto 2D do canvas
+    ctx.drawImage(img, x, y, width, height);
+  };
