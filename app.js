@@ -33,9 +33,9 @@ var umidadeArray = [0,0,0,0,0]
 var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
     type: 'line',
     data: {
-        labels: [5,4,3,2,1],
+        labels: ["5s","4s","3s","2s","1s"],
         datasets: [{
-            label: 'Vendas',
+            label: 'Umidade',
             data: umidadeArray,
             borderColor: 'green',
             borderWidth: 3,
@@ -44,25 +44,6 @@ var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
         }]
     },
     options: {
-        annotation: {
-            annotations: [
-                {
-                    type: 'label', // Tipo de anotação
-                    backgroundColor: 'black', // Cor de fundo do rótulo
-                    content: `Último valor: ${umidadeArray[4]}`, // Texto do rótulo
-                    font: {
-                        size: 14,
-                        weight: 'bold',
-                    },
-                    position: {
-                        x: '50%', // Posição horizontal (50% da largura do gráfico)
-                        y: '145%'  // Posição vertical (acima do eixo x)
-                    },
-                    xAdjust: 10, // Ajusta a posição no eixo X
-                    yAdjust: 10, // Ajusta a posição no eixo Y (distância para baixo)
-                }
-            ]
-        },
         scales: {
             y: {
                 beginAtZero: true,
