@@ -76,7 +76,7 @@ var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
 
 //funçao que faz requisiçao pro servidor para obter os dados
 async function GraficoUimidade(){
-    var data = await fetch('https://servernode-jb93xdosc-opaulins-projects.vercel.app/getData',{
+    var data = await fetch('https://esp32-server-production.up.railway.app/getData',{
         headers:{
             'Content-Type': 'application/json'
         }
