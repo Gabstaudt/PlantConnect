@@ -28,19 +28,20 @@ img.onload = () => {
     ctx.drawImage(img, x, y, width, height);
 };
 //variavel que guarda os 5 valores de umidade 
-var umidadeArray = [0,0,0,0,0]
+var umidadeArray = []
 //criaçao do rafico
 var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
     type: 'line',
     data: {
-        labels: ["5s","4s","3s","2s","1s"],
+        labels: ["10s","9s","8s","7s","6s","5s","4s","3s","2s","1s"],
         datasets: [{
             label: 'Umidade',
             data: umidadeArray,
             borderColor: 'green',
             borderWidth: 3,
             tension: 0,
-            fill: false
+            fill: false,
+            pointRadius: 1
         }]
     },
     options: {
@@ -50,7 +51,10 @@ var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
                 min: 1000,
                 max: 4095,
             }
-        }
+        },
+        animation: {
+            duration: 0  // Define a duração da animação como 0, desativando a animação
+          }
     }
 }) 
 
