@@ -48,8 +48,8 @@ var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
         scales: {
             y: {
                 beginAtZero: true,
-                min: 1000,
-                max: 4095,
+                min: 0,
+                max:100,
             }
         },
         animation: {
