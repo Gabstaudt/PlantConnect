@@ -12,46 +12,6 @@ function fecharPopup() {
     popup.classList.add("hidden");
 }
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Gráfico de Gauge para Temperatura
-    new Chart(document.getElementById("temperatureGauge"), {
-        type: "doughnut",
-        data: {
-            labels: ["Temperatura"],
-            datasets: [{
-                data: [28.23, 50 - 28.23],
-                backgroundColor: ["#4CAF50", "#e0e0e0"],
-            }],
-        },
-        options: { circumference: 180, rotation: 270, cutout: "80%", plugins: { tooltip: { enabled: false } } }
-    });
-
-    // Gráfico de Gauge para Umidade
-    new Chart(document.getElementById("humidityGauge"), {
-        type: "doughnut",
-        data: {
-            labels: ["Umidade"],
-            datasets: [{ data: [42.72, 100 - 42.72], backgroundColor: ["#A5D6A7", "#e0e0e0"] }],
-        },
-        options: { circumference: 180, rotation: 270, cutout: "80%", plugins: { tooltip: { enabled: false } } }
-    });
-
-    // Gráfico de Linha para Pressão
-    new Chart(document.getElementById("pressureLineChart"), {
-        type: "line",
-        data: { labels: ["14:13", "14:14"], datasets: [{ label: "Pressão", data: [926.37, 926.4], borderColor: "#4CAF50", tension: 0.1 }] },
-        options: { scales: { x: { display: true }, y: { display: true } } }
-    });
-
-    // Gráfico de Linha para Altitude
-    new Chart(document.getElementById("altitudeLineChart"), {
-        type: "line",
-        data: { labels: ["14:13", "14:14"], datasets: [{ label: "Altitude", data: [749.85, 750.0], borderColor: "#A5D6A7", tension: 0.1 }] },
-        options: { scales: { x: { display: true }, y: { display: true } } }
-    });
-});
-
 //adição de imagem ao canvas
 var canvas = document.getElementById('plantLive')
 var ctx = canvas.getContext('2d');
@@ -66,4 +26,70 @@ img.onload = () => {
   
     // Desenha a imagem no contexto 2D do canvas
     ctx.drawImage(img, x, y, width, height);
-  };
+};
+//variavel que guarda os 5 valores de umidade 
+var umidadeArray = [0,0,0,0,0]
+//criaçao do rafico
+var linha1 =  new Chart(document.getElementById("pressureLineChart"),{
+    type: 'line',
+    data: {
+        labels: [5,4,3,2,1],
+        datasets: [{
+            label: 'Vendas',
+            data: umidadeArray,
+            borderColor: 'green',
+            borderWidth: 3,
+            tension: 0,
+            fill: false
+        }]
+    },
+    options: {
+        annotation: {
+            annotations: [
+                {
+                    type: 'label', // Tipo de anotação
+                    backgroundColor: 'black', // Cor de fundo do rótulo
+                    content: `Último valor: ${umidadeArray[4]}`, // Texto do rótulo
+                    font: {
+                        size: 14,
+                        weight: 'bold',
+                    },
+                    position: {
+                        x: '50%', // Posição horizontal (50% da largura do gráfico)
+                        y: '145%'  // Posição vertical (acima do eixo x)
+                    },
+                    xAdjust: 10, // Ajusta a posição no eixo X
+                    yAdjust: 10, // Ajusta a posição no eixo Y (distância para baixo)
+                }
+            ]
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 1000,
+                max: 4095,
+            }
+        }
+    }
+}) 
+
+
+//funçao que faz requisiçao pro servidor para obter os dados
+async function GraficoUimidade(){
+    var data = await fetch('http://localhost:3000/getData',{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+    if(data.ok){
+        //atualiza os dados no grafico
+        umidadeArray = await data.json()
+        umidadeArray = umidadeArray.valor
+        linha1.data.datasets[0].data = umidadeArray;
+        linha1.update()
+    }
+     
+}
+
+//puxa os dados do servidor a cada 1 seg
+setInterval( GraficoUimidade,1000)
