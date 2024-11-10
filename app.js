@@ -67,9 +67,12 @@ async function GraficoUimidade(){
         }
     })
     if(data.ok){
+        //atualiza o dado mais recendo de umidade
+        var humidity = document.getElementById('humidity')
         //atualiza os dados no grafico
         umidadeArray = await data.json()
         umidadeArray = umidadeArray.valor
+        humidity.innerHTML = umidadeArray[umidadeArray.length-1]
         linha1.data.datasets[0].data = umidadeArray;
         linha1.update()
     }
