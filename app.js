@@ -67,12 +67,15 @@ async function GraficoUimidade(){
         }
     })
     if(data.ok){
-        //atualiza o dado mais recendo de umidade
+        //referencia o label de umidade no componente de dados
         var humidity = document.getElementById('humidity')
-        //atualiza os dados no grafico
+        //coloca os dados transmitido na variavel
         umidadeArray = await data.json()
-        umidadeArray = umidadeArray.valor
+        //coloca na variavel somente os dados da umidade da trra
+        umidadeArray = umidadeArray.umiTerra
+        //vai receber o valor de umidade do solo mais atualizado
         humidity.innerHTML = umidadeArray[umidadeArray.length-1]
+        //atualiza o grafico
         linha1.data.datasets[0].data = umidadeArray;
         linha1.update()
     }
