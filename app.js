@@ -74,7 +74,6 @@ var linha2 = new Chart(document.getElementById("tempArAreaChart"), {
             borderColor: 'orange',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',  
             borderWidth: 3,
-            tension: 0.3,
             fill: true,  
             pointRadius: 1
         }]
@@ -134,7 +133,6 @@ var combinedChart = new Chart(document.getElementById("combinedChart"), {
                 data: tempArArray,
                 borderColor: 'orange',
                 borderWidth: 2,
-                tension: 0.4,
                 fill: false,
                 pointRadius: 1
             },
@@ -143,7 +141,6 @@ var combinedChart = new Chart(document.getElementById("combinedChart"), {
                 data: umidadeArray,
                 borderColor: 'green',
                 borderWidth: 2,
-                tension: 0.4,
                 fill: false,
                 pointRadius: 1
             },
@@ -152,13 +149,16 @@ var combinedChart = new Chart(document.getElementById("combinedChart"), {
                 data: umidArArray,
                 borderColor: '#89CFF0',
                 borderWidth: 2,
-                tension: 0.4,
                 fill: false,
                 pointRadius: 1
             }
+            
         ]
     },
     options: {
+        animation: {
+            duration: 0
+        },
         responsive: true,
         scales: {
             y: {
