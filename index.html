@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    
+
 </head>
 <body>
     <header class="sess1">
@@ -30,35 +33,40 @@
             
             <canvas id="plantLive"></canvas>   
             
-            <!-- Dados Meteorológicos -->
             <div class="data-section">
-                <h3>Dados </h3>
+                <h3>Dados</h3>
                 <div class="data-box">
                     <div id="data-temp">
-                        <p>Temperatura(°C)</p>
-                        <span id="temperature"class="value-data-box">28.23</span> 
+                        <p>Temperatura</p>
+                        <span id="temperature" class="value-data-box">--</span> 
                     </div>
                     <div id="data-umi">
-                        <p>Umidade(%)</p>
-                        <span id="humidity" class="value-data-box">42.72</span>
+                        <p>Umidade do Solo </p>
+                        <span id="humidity" class="value-data-box">--</span>
                     </div>
                     <div id="data-atmo" >
-                        <p>Pressão AT(hPa0)</p>
-                        <span id="pressure" class="value-data-box">926.37</span>
+                        <p>Umidade do Ar </p>
+                        <span id="humidityAir" class="value-data-box">--</span>
                     </div>
                     <div id="data-alti">
-                       <p>Altitude(m)</p>
-                       <span id="altitude" class="value-data-box">749.85</span>
-                    </div>
-                     
-                    
+                        <p>Classificação</p>
+                        <span id="altitude" class="value-data-box">class aqui</span>
+                     </div>
                 </div>
             </div>
-            <!-- Gráficos  -->
+            
+            
+                </div>
+            </div>
+
+            <!-- Gráficos 1  -->
             <div class="gauge-section">
                 <h3>Análise Gráfica</h3>
-                <canvas id="temperatureGauge"></canvas>
-                <canvas id="humidityGauge"></canvas>
+                <h3>Temperatura do Ar: <span id="tempAr">--</span>°C</h3>
+                <canvas id="tempArAreaChart" width="400" height="200"></canvas>
+
+                <h3>Umidade do Ar: <span id="umidAr">--</span>%</h3>
+                <canvas id="umidArLineChart" width="400" height="200"></canvas>
             </div>
 
             <!-- Gráficos de Linha -->
@@ -67,20 +75,14 @@
                 <canvas id="pressureLineChart" height="280"></canvas>
                 <canvas id="altitudeLineChart" height="280"></canvas>
             </div>
-
             
             
         </section>
     </main>
 
-    <div id="result-popup" class="popup hidden">
-        <div class="popup-content">
-            <span class="close-button" onclick="fecharPopup()">&times;</span>
-            <h2>Resultado da Classificação</h2>
-            <p id="classification-result">A planta parece....</p>
-        </div>
-    </div>
+
 
     <script src="app.js"></script>
 </body>
 </html>
+
