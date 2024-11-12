@@ -231,7 +231,7 @@ main {
 @media  (max-width:1300px){
     .monitoramento{
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 500px 240px 10px;
+        grid-template-rows: 50dvh 240px 10px;
         gap: 20px;
         align-items: start;
         justify-content: center;
@@ -252,6 +252,9 @@ main {
     .gauge-section{
         grid-column: 1/2;
         grid-row: 3/4;    
+    }
+    .direita{
+        grid-column: 2 / 3;
     }
     .line-chart-section{
         grid-column: 2/3;
