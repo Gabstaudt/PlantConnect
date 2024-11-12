@@ -15,15 +15,44 @@
     <header class="sess1">
         <div class="ss2">
             <h1>Monitoramento de Planta</h1>
-            <p>slogan/subtitulo</p>
-            <button>apresentação do projeto</button>
+            <p>sitema de monitoramento de babosa</p>
+            <button onclick="openPopup()">Conheça o projeto</button>
         </div>
     </header>
+<!-- Estrutura do popup -->
+<div id="projectPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Apresentação do Projeto</h2>
+        
+        <!-- Descrição do projeto com imagens e detalhes -->
+        <h3>Placa ESP32</h3>
+        <p>A ESP32 é o “cérebro” do sistema, conectando todos os sensores e processando as informações para enviar dados sobre umidade e temperatura para uma interface de monitoramento. Sua capacidade de conectividade permite a integração com dispositivos móveis para visualização em tempo real.</p>
+        <img src="../image/esp32.png" alt="Imagem da placa ESP32" class="popup-image">
+        
+        <h3>Sensor de Umidade do Solo</h3>
+        <p>Este sensor mede a umidade do solo, essencial para avaliar se a planta está recebendo água suficiente para se manter saudável. O sensor funciona medindo a resistência do solo, que varia com a quantidade de água presente.</p>
+        <img src="../image/sensor.png" alt="Imagem do sensor de umidade do solo" class="popup-image">
+        
+        <h3>Sensor de Umidade e Temperatura do Ar</h3>
+        <p>O sensor de umidade e temperatura do ar capta dados sobre as condições atmosféricas ao redor da planta. Ele mede a umidade relativa e a temperatura do ar, parâmetros críticos para a manutenção de um ambiente saudável para a planta.</p>
+        <img src="../image/sensor2.png" alt="Imagem do sensor de umidade e temperatura" class="popup-image">
+        
+        <h3>Visão Computacional para Classificação da Babosa</h3>
+        <p>Com a ajuda da visão computacional, o sistema analisa imagens da babosa e detecta automaticamente sinais de saúde ou possíveis doenças. Esse modelo de classificação foi treinado para identificar características visuais que indicam se a planta está saudável ou em situação de risco, auxiliando na tomada de decisões para cuidados preventivos.</p>
+        <img src="../image/babosa.png" alt="Imagem de babosas analisadas pela visão computacional" class="popup-image">
+
+        
+        <h3>Funcionamento Geral</h3>
+        <p>Todos os dados coletados são transmitidos para um servidor e depois para a interface de monitoramento, que exibe gráficos e informações em tempo real sobre as condições da planta. Com uma combinação de IoT e inteligência artificial, o sistema oferece uma maneira prática e eficiente de acompanhar a saúde da babosa, auxiliando tanto no cultivo sustentável quanto no estudo das necessidades da planta.</p>
+    </div>
+</div>
+
     
     <main>
         <section class="classificacao">
             <div class="classificacao-box">
-                <h2>Condição da Planta</h2>
+                <h2>Classificação</h2>
                 <p id="prediction"></p>
                 
             </div>
@@ -31,7 +60,7 @@
 
         <section class="monitoramento">
             
-            <video id="video"  autoplay></video>
+            <video id="video" autoplay></video>   
             
             <div class="data-section">
                 <h3>Dados</h3>
@@ -70,10 +99,16 @@
             </div>
 
             <!-- Gráficos de Linha -->
-            <div class="line-chart-section">
-                <h3>Análise Gráfica do solo %</h3>
-                <canvas id="pressureLineChart" height="280"></canvas>
-                <canvas id="altitudeLineChart" height="280"></canvas>
+            <div class="gauge-section">
+                <h3>Umidade do solo: <span id="UmiSo">--</span>% </h3>
+                <canvas id="pressureLineChart" width="300" height="150"></canvas> 
+
+                <div class="combined-chart-section">
+                    <h3>Análise Combinada </h3>
+                    <canvas id="combinedChart" width="400" height="300"></canvas>
+                </div>
+
+
             </div>
             
             
@@ -85,4 +120,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
