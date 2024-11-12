@@ -5,6 +5,23 @@ function openPopup() {
 function closePopup() {
     document.getElementById("projectPopup").style.display = "none";
 }
+
+// function baixarCSV() {
+//     const csvContent = "data:text/csv;charset=utf-8,"
+//         + "Tempo (s),Temperatura (°C),Umidade do Solo (%),Umidade do Ar (%)\n"
+//         + tempArArray.map((temp, index) => `${index + 1},${temp},${umidadeArray[index]},${umidArArray[index]}`).join("\n");
+
+//     const encodedUri = encodeURI(csvContent);
+//     const link = document.createElement('a');
+//     link.setAttribute('href', encodedUri);
+//     link.setAttribute('download', 'monitoramento_planta.csv');
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link); // função de baixar o csv dos dados
+// }
+
+
+
 const video = document.getElementById('video');
 const predictionText = document.getElementById('prediction');
 navigator.mediaDevices.getUserMedia({ video: true })
