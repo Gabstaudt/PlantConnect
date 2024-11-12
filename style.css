@@ -115,11 +115,7 @@ main {
     gap: 20px;
 }
 
-.gauge-section canvas {
-    width: 100%; /* Largura total dentro do contêiner */
-    height: 200px; /* Altura fixa para garantir o mesmo tamanho */
-    max-width: 350px; /* Limite de largura */
-}
+
 
 .line-chart-section, .data-section {
     align-self: flex-start;
