@@ -55,7 +55,7 @@ var umidArArray = [];
 var linha1 = new Chart(document.getElementById("pressureLineChart"), {
     type: 'line',
     data: {
-        labels: ["10s","9s","8s","7s","6s","5s","4s","3s","2s","1s"],
+        labels: ["10s", "9s", "8s", "7s", "6s", "5s", "4s", "3s", "2s", "1s"],
         datasets: [{
             label: 'Umidade do Solo',
             data: umidadeArray,
@@ -84,14 +84,14 @@ var linha1 = new Chart(document.getElementById("pressureLineChart"), {
 var linha2 = new Chart(document.getElementById("tempArAreaChart"), {
     type: 'line',
     data: {
-        labels: ["10s","9s","8s","7s","6s","5s","4s","3s","2s","1s"],
+        labels: ["10s", "9s", "8s", "7s", "6s", "5s", "4s", "3s", "2s", "1s"],
         datasets: [{
             label: 'Temperatura do Ar',
             data: tempArArray,
             borderColor: 'orange',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',  
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderWidth: 3,
-            fill: true,  
+            fill: true,
             pointRadius: 1
         }]
     },
@@ -99,8 +99,8 @@ var linha2 = new Chart(document.getElementById("tempArAreaChart"), {
         scales: {
             y: {
                 beginAtZero: true,
-                min: -10, 
-                max: 50   
+                min: -10,
+                max: 50
             }
         },
         animation: {
@@ -113,7 +113,7 @@ var linha2 = new Chart(document.getElementById("tempArAreaChart"), {
 var linha3 = new Chart(document.getElementById("umidArLineChart"), {
     type: 'line',
     data: {
-        labels: ["10s","9s","8s","7s","6s","5s","4s","3s","2s","1s"],
+        labels: ["10s", "9s", "8s", "7s", "6s", "5s", "4s", "3s", "2s", "1s"],
         datasets: [{
             label: 'Umidade do Ar',
             data: umidArArray,
@@ -143,7 +143,7 @@ var linha3 = new Chart(document.getElementById("umidArLineChart"), {
 var combinedChart = new Chart(document.getElementById("combinedChart"), {
     type: 'line',
     data: {
-        labels: ["10s", "9s", "8s", "7s", "6s", "5s", "4s", "3s", "2s", "1s"], 
+        labels: ["10s", "9s", "8s", "7s", "6s", "5s", "4s", "3s", "2s", "1s"],
         datasets: [
             {
                 label: 'Temperatura do Ar (°C)',
@@ -169,7 +169,7 @@ var combinedChart = new Chart(document.getElementById("combinedChart"), {
                 fill: false,
                 pointRadius: 1
             }
-            
+
         ]
     },
     options: {
@@ -181,12 +181,13 @@ var combinedChart = new Chart(document.getElementById("combinedChart"), {
             y: {
                 beginAtZero: true,
                 min: 0,
-                max: 100, 
+                max: 100,
                 ticks: {
-                    stepSize: 10, 
-                    callback: function(value) {
-                        return value; 
-                    }},
+                    stepSize: 10,
+                    callback: function (value) {
+                        return value;
+                    }
+                },
                 title: {
                     display: true,
                     text: 'Medição (%)'
@@ -229,39 +230,39 @@ function sendFrameToAPI() {
         },
         body: JSON.stringify({ image: frameBase64 })
     })
-    .then(response => {
-        console.log("Resposta da API recebida:", response);
-        if (!response.ok) {
-            throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log("Resposta da API processada:", data);
-        if (data.prediction_pt && data.prediction_en) {
-            var classIA = document.getElementById('ClassiIA')
-            predictionText.innerText = `Predição: ${data.prediction_pt} / ${data.prediction_en}`;
-            classIA.innerHTML =data.prediction_pt 
-        } else {
-            console.warn("Previsão não encontrada na resposta da API");
-            predictionText.innerText = "Erro na previsão. Tente novamente.";
-        }
-    })
-    .catch(error => {
-        console.error("Erro ao enviar o frame:", error);
-        if (error.message.includes('fetch')) {
-            predictionText.innerText = "Erro de comunicação com a API";
-        } else {
-            predictionText.innerText = "Erro desconhecido ao enviar o frame";
-        }
-    });
+        .then(response => {
+            console.log("Resposta da API recebida:", response);
+            if (!response.ok) {
+                throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Resposta da API processada:", data);
+            if (data.prediction_pt && data.prediction_en) {
+                var classIA = document.getElementById('ClassiIA')
+                predictionText.innerText = `Predição: ${data.prediction_pt} / ${data.prediction_en}`;
+                classIA.innerHTML = data.prediction_pt
+            } else {
+                console.warn("Previsão não encontrada na resposta da API");
+                predictionText.innerText = "Erro na previsão. Tente novamente.";
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao enviar o frame:", error);
+            if (error.message.includes('fetch')) {
+                predictionText.innerText = "Erro de comunicação com a API";
+            } else {
+                predictionText.innerText = "Erro desconhecido ao enviar o frame";
+            }
+        });
 }
 //função para atualizar os arrays de informações
-function updateGraphArray(array,value){
-    if(array.length<10){
+function updateGraphArray(array, value) {
+    if (array.length < 10) {
         array.push(value)
 
-    }else{
+    } else {
         array.shift()
         array.push(value)
     }
@@ -275,14 +276,14 @@ async function atualizarGraficos() {
                 'Content-Type': 'application/json'
             }
         });
-        
+
         if (!response.ok) {
             throw new Error('Erro ao buscar dados do servidor');
         }
 
         var jsonData = await response.json();
-        updateGraphArray(umidadeArray,jsonData.umiTerra)
-        
+        updateGraphArray(umidadeArray, jsonData.umiTerra)
+
         var UmiSo = document.getElementById('UmiSo')
         var humidityElement = document.getElementById('humidity');
         humidityElement.textContent = umidadeArray[umidadeArray.length - 1].toFixed(2);
@@ -291,17 +292,17 @@ async function atualizarGraficos() {
         linha1.update();
 
         // Atualizar dados de Temperatura do Ar
-        updateGraphArray(tempArArray,jsonData.tempAr)
+        updateGraphArray(tempArArray, jsonData.tempAr)
         var temperatureElement = document.getElementById('temperature'); // temperatura - dados
         temperatureElement.textContent = tempArArray[tempArArray.length - 1].toFixed(2);
-        
+
         var tempArElement = document.getElementById('tempAr'); // temperatura - gráfico
         tempArElement.textContent = tempArArray[tempArArray.length - 1].toFixed(2);
         linha2.data.datasets[0].data = tempArArray;
         linha2.update();
 
         // Atualizar dados de Umidade do Ar
-        updateGraphArray(umidArArray,jsonData.umidAr)
+        updateGraphArray(umidArArray, jsonData.umidAr)
         var umidArElement = document.getElementById('umidAr');
         umidArElement.textContent = umidArArray[umidArArray.length - 1].toFixed(2);
         linha3.data.datasets[0].data = umidArArray;
@@ -312,13 +313,20 @@ async function atualizarGraficos() {
         humidityAirElement.textContent = umidArArray[umidArArray.length - 1].toFixed(2);
 
         // gráfico combinado com 3 linhas
-        combinedChart.data.datasets[0].data = tempArArray; 
-        combinedChart.data.datasets[1].data = umidadeArray; 
-        combinedChart.data.datasets[2].data = umidArArray; 
+        combinedChart.data.datasets[0].data = tempArArray;
+        combinedChart.data.datasets[1].data = umidadeArray;
+        combinedChart.data.datasets[2].data = umidArArray;
         combinedChart.update();
 
     } catch (error) {
         console.error('Erro ao atualizar gráficos:', error);
     }
 }
-setInterval(atualizarGraficos, 1000);
+ async function iniciarAtualizacao() {
+    while (true) {
+        await atualizarGraficos();
+        await sendFrameToAPI();
+        await new Promise(resolve => setTimeout(resolve, 1000)); // aguarda 1 segundo após a atualização
+    }
+}
+iniciarAtualizacao();
