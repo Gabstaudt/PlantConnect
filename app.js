@@ -256,10 +256,21 @@ function sendFrameToAPI() {
         }
     });
 }
+//função para atualizar os arrays de informações
+function updateGraphArray(array,value){
+    if(array.length<10){
+        array.push(value)
+
+    }else{
+        array.shift()
+        array.push(value)
+    }
+    return array
+}
 // requisição para o servidor e atualiza os gráficos
 async function atualizarGraficos() {
     try {
-        var response = await fetch('https://esp32-server-production.up.railway.app/getData', {
+        var response = await fetch('http://localhost:3000/sensor', {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -270,9 +281,8 @@ async function atualizarGraficos() {
         }
 
         var jsonData = await response.json();
+        updateGraphArray(umidadeArray,jsonData.umiTerra)
         
-        // Atualizar dados de Umidade do Solo
-        umidadeArray = jsonData.umiTerra;
         var UmiSo = document.getElementById('UmiSo')
         var humidityElement = document.getElementById('humidity');
         humidityElement.textContent = umidadeArray[umidadeArray.length - 1].toFixed(2);
@@ -281,7 +291,7 @@ async function atualizarGraficos() {
         linha1.update();
 
         // Atualizar dados de Temperatura do Ar
-        tempArArray = jsonData.tempAr;
+        updateGraphArray(tempArArray,jsonData.tempAr)
         var temperatureElement = document.getElementById('temperature'); // temperatura - dados
         temperatureElement.textContent = tempArArray[tempArArray.length - 1].toFixed(2);
         
@@ -291,7 +301,7 @@ async function atualizarGraficos() {
         linha2.update();
 
         // Atualizar dados de Umidade do Ar
-        umidArArray = jsonData.umidAr;
+        updateGraphArray(umidArArray,jsonData.umidAr)
         var umidArElement = document.getElementById('umidAr');
         umidArElement.textContent = umidArArray[umidArArray.length - 1].toFixed(2);
         linha3.data.datasets[0].data = umidArArray;
@@ -311,5 +321,4 @@ async function atualizarGraficos() {
         console.error('Erro ao atualizar gráficos:', error);
     }
 }
-setInterval(sendFrameToAPI, 1000)
 setInterval(atualizarGraficos, 1000);
